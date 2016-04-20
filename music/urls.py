@@ -3,5 +3,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^tide/', include('tide.urls')),
+    url(r'^tide/', include('tide.urls', namespace="tide")),
 ]

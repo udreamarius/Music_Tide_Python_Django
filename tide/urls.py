@@ -2,14 +2,15 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	# /tide/ - points to the /tide/ page
-	url(r'^$', views.index, name='index'),
-	
-	# /tide/1/ - accepts any integer from 0 to a billion or more
-	# or any combination of integers you can think of
-	url(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
+	url(r'^$', views.IndexView.as_view(), name='index'),
+	url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+ 
+	# /music/album/add/
+	url(r'album/add/$', views.AlbumCreate.as_view(), name='album-add'),
 
-	# /tide/234/favourite/ - to fav a song
-	url(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
+	# /music/album/2/
+	url(r'album/(?P<pk>[0-9]+)/$', views.AlbumUpdate.as_view(), name='album-update'),
 
+	# /music/album/2/delete
+	url(r'album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
 ]
